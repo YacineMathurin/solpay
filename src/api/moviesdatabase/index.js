@@ -9,6 +9,14 @@ const BEARER_TOKEN =
 
 export const getFilmsList = async () => {
 	let url = `movie/top_rated`;
+	// Send a POST request
+	await axios({
+		method: 'get',
+		url: URL,
+		headers: {
+			BEARER_TOKEN
+		}
+  	});
 	//
 	// TODO : implementer getFilmsList
 	//
