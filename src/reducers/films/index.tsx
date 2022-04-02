@@ -1,14 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface InitialState {
+	list: []
+}  
+const initialState: InitialState = {
 	list: [],
 };
 
 export const filmsSlice = createSlice({
-	name: "list",
+	name: "filmsList",
 	initialState,
 	reducers: {
-		populateFilms: (state, action) => {
+		populateFilms: (state, action: PayloadAction<[]>) => {
+			state.list = action.payload
 			// TODO : implementer populateFilms
 			// Redux Toolkit allows us to write "mutating" logic in reducers. It
 			// doesn't actually mutate the state because it uses the Immer library,
@@ -21,5 +25,6 @@ export const filmsSlice = createSlice({
 // Action creators are generated for each case reducer function
 
 // TODO : exporter la slice :)
+export const { populateFilms } = filmsSlice.actions;
 
 export default filmsSlice.reducer;
