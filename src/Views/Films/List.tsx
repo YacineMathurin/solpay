@@ -52,7 +52,7 @@ const FilmList = () => {
 	return (
 		<div className="movie-list">
 			{/* Search Input */}
-			<Form className="search" autoComplete="off">
+			<Form className="search" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
 				<Form.Control type="text" placeholder="Rechercher un film" onChange={(e) => handleSearch(e.currentTarget.value) }/>
 			</Form>
 

@@ -84,6 +84,8 @@
 } 
 .movie-detail .movie-poster {
   flex: 1;
+  position: relative;
+  bottom: 150px;
 }
 .movie-detail .movie-info {
   position: relative;
@@ -115,5 +117,17 @@
   to {
     opacity: 1;
     bottom: 150px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .movie-detail .movie {
+    display: block;
+    margin-top: 1em;
+  }
+  .movie-detail .movie-info {
+    position: unset;
+  }
+  .movie-detail .movie-poster {
+    position: unset;
   }
 }

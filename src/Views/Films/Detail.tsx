@@ -61,7 +61,8 @@ const FilmDetail: React.FC<RouteProps> = () => {
 			<Button variant="secondary" style={{width: "50%"}} onClick={() => navigate(-1)}>Retour</Button>
 			<div className="movie">
 				<div className="movie-poster">
-					{/*<img src={} alt={film[0]["title"]} />*/}
+					{/* <img src={""} alt={"Poster Image Available Soon"} /> */}
+					<p>Poster Image Available Soon</p>
 					<Spinner animation="grow" />
 				</div>
 				<div className="movie-info">
