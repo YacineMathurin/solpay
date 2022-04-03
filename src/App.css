@@ -46,7 +46,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+  padding: 2em;
+  animation: fadeIn .5s ease-in;
+}
+.movie-list .search {
+  width: 50%;
 }
 .movie-link-container {
   background-color: #f2f2f0;
@@ -54,6 +58,9 @@
   margin: .75em;
   border-radius: 5px;
   padding: 0 1em;
+}
+.movie-link-container:hover {
+  background-color: #e8e7e6;
 }
 .movie-link, .movie-link:hover {
   text-decoration: none;
@@ -65,6 +72,7 @@
 .movie-detail {
   height: 100vh;
   overflow: hidden;
+  animation: fadeIn .5s ease-in;
 }
 .movie-detail .movie {
     display: flex;
@@ -72,12 +80,16 @@
     justify-items: center;
     align-items: center;
     height: 100vh;
+    padding: 0 5em;
 } 
 .movie-detail .movie-poster {
   flex: 1;
 }
 .movie-detail .movie-info {
+  position: relative;
+  opacity: 0;
   flex: 1;
+  animation: animate-movie-info 1s .7s forwards;
 }
 @keyframes App-logo-spin {
   from {
@@ -85,5 +97,23 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes animate-movie-info {
+  from {
+    opacity: 0;
+    bottom: 0;
+  }
+  to {
+    opacity: 1;
+    bottom: 150px;
   }
 }

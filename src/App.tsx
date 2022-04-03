@@ -17,10 +17,12 @@ function App() {
     <BrowserRouter>
 		<Routes>
 			<Route path="/" element={<Home />}/>
+
 			<Route path="/films" element={<Films />}>
 				<Route index element={<FilmList />} />
-				<Route path=":filmId" element={<FilmDetail />}/>
+				<Route path=":filmId" element={<FilmDetail />} />
 			</Route>	
+
 			<Route path="*" element={<Home />} />
 		</Routes>
   	</BrowserRouter>

@@ -4,7 +4,7 @@ const Home = () => {
 	return (
 		<div className="container home">
 			<h1>HOME</h1>
-			<Link to="/films">Display movie list</Link>
+			<Link to="/films" style={{textDecoration: "none"}}>Display the movie's list</Link>
 		</div>
 	)
 };

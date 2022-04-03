@@ -10,9 +10,14 @@ const Films = () => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		(async() => {
-				const data = await getFilmsList();
-				console.log("Movies", data);
-				dispatch(populateFilms(data));
+				try {
+					const data = await getFilmsList();
+					console.log("Movies", data);
+					dispatch(populateFilms(data));	
+				} catch (error) {
+					throw new Error("Oups !!");
+				}
+				
 			}
 		)()
 	}, []);
