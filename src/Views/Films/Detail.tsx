@@ -4,7 +4,7 @@ import { RootState } from "../../reducers/store";
 import { useSelector } from 'react-redux';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 
 
 const FilmDetail: React.FC<RouteProps> = () => {
@@ -62,6 +62,7 @@ const FilmDetail: React.FC<RouteProps> = () => {
 			<div className="movie">
 				<div className="movie-poster">
 					{/*<img src={} alt={film[0]["title"]} />*/}
+					<Spinner animation="grow" />
 				</div>
 				<div className="movie-info">
 					<p style={{fontWeight: "bold"}}>{film[0]["title"]}</p>
