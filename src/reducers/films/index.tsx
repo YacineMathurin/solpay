@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface InitialState {
-	list: []
+	list: [],
+	active: number
 }  
 const initialState: InitialState = {
 	list: [],
+	active: 1
 };
 
 export const filmsSlice = createSlice({
@@ -19,12 +21,15 @@ export const filmsSlice = createSlice({
 			// which detects changes to a "draft state" and produces a brand new
 			// immutable state based off those changes
 		},
+		setActivePage: (state, action: PayloadAction<number>) => {
+			state.active = action.payload
+		}
 	},
 });
 
 // Action creators are generated for each case reducer function
 
 // TODO : exporter la slice :)
-export const { populateFilms } = filmsSlice.actions;
+export const { populateFilms, setActivePage } = filmsSlice.actions;
 
 export default filmsSlice.reducer;

@@ -1,21 +1,71 @@
-import React from "react";
-import { useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 import { RootState } from "../../reducers/store";
+import Pagination from 'react-bootstrap/Pagination';
+import { setActivePage } from "../../reducers/films";
 
-export interface ListItem {
-	//item: {
-		title: String
-	//}
-}
+export interface IList {
+	list: {
+		title: string,
+		overview: string,
+		id: number,
+		poster_path: string
+	}[]
+};
 
 const FilmList = () => {
-	const list = useSelector((state: RootState) => state.filmsList.list)
+	const [active, setActive] = useState(1);
+	const dispatch = useDispatch();
+	const list: IList["list"] = useSelector((state: RootState) => state.filmsList.list);
+	const activePage:  number = useSelector((state: RootState) => state.filmsList.active);
+
 	console.log("List", list);
+	const totalFilms = list.length;
+	const pageSize = 5;
+	const pageCount = Math.ceil(totalFilms/pageSize);
+
+	let items = [];
+	for (let number = 1; number <= pageCount; number++) {
+	  items.push(
+		<Pagination.Item key={number} active={number === activePage} onClick={()=>dispatch(setActivePage(number))}>
+		  {number}
+		</Pagination.Item>,
+	  );
+	}
+
+	// const pageMovie = list.filter((item, index) => index <= pageSize * activePage)
+	const pageMovie = list.slice(((activePage - 1) * pageSize),(pageSize * activePage));
 	
 	return (
-		// <div>FILMS LIST</div>
-		<div>
-			{list.map(item => <p>{item.title}</p>)}
+		<div className="movie-list">
+			{pageMovie.map(item => (
+				<div 
+					key={item.id}
+					className="movie-link-container"
+				>
+				<Link to={{
+						pathname: item.id.toString(),
+						state: {
+							id: item.id,
+							title: item.title,
+							overview: item.overview
+						}
+					}}
+					className="movie-link"
+				>
+					<p className="title">{item.title}</p>
+					<p>{item.overview}</p>
+				</Link>
+				</div>
+			))}
+			<Pagination>
+			<Pagination.First disabled={activePage === 1} onClick={()=>dispatch(setActivePage(1))}/>
+  			<Pagination.Prev disabled={activePage === 1} onClick={()=>dispatch(setActivePage(activePage - 1))} />
+				{items}
+			<Pagination.Next disabled={activePage === pageCount} onClick={()=>dispatch(setActivePage(activePage + 1))} />
+  			<Pagination.Last disabled={activePage === pageCount} onClick={()=>dispatch(setActivePage(pageCount))}/>
+			</Pagination>
 		</div>
 	);
 };
